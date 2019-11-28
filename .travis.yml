@@ -1,0 +1,9 @@
+language: java
+cache: ~
+group: edge
+jdk: openjdk8
+os: linux
+script: 
+  - "mvn clean install"
+after_success:
+  - mvn clean test jacoco:report coveralls:report -DrepoToken=HB6pM4O9ma54YAUFKYD98yNGuwEVzLWAU
