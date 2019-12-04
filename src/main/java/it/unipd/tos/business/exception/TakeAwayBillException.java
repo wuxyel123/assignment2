@@ -1,11 +1,10 @@
 ////////////////////////////////////////////////////////////////////
 // Alessandro Discalzi 1169739
 ////////////////////////////////////////////////////////////////////
-package it.unipd.tos;
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+package it.unipd.tos.business.exception;
+
+public class TakeAwayBillException extends Exception {
+    public TakeAwayBillException(final String msg){
+        super(msg);
     }
 }
