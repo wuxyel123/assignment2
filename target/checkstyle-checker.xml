@@ -11,7 +11,7 @@
 	</module>
 
 	<module name="FileTabCharacter">
-		<property name="eachLine" value="true"/>
+		<property name="eachLine" value="false"/>
 	</module>
 
 	<module name="TreeWalker">

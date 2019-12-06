@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">sandwich-shop-manager</a> &gt; <a href="index.source.html" class="el_package">it.unipd.tos</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">////////////////////////////////////////////////////////////////////
+// Alessandro Discalzi 1169739
+////////////////////////////////////////////////////////////////////
+package it.unipd.tos;
+
+import it.unipd.tos.business.TakeAwayBill;
+import it.unipd.tos.business.exception.TakeAwayBillException;
+import it.unipd.tos.model.MenuItem;
+
+import java.util.List;
+import java.util.OptionalDouble;
+
+<span class="fc" id="L13">public class App implements TakeAwayBill {</span>
+    public double getOrderPrice(List&lt;MenuItem&gt; itemsOrdered) throws TakeAwayBillException {
+<span class="fc" id="L15">        double tot = 0.0;//Totale prezzo da pagare</span>
+<span class="fc" id="L16">        double totNoDrink = 0.0;//Totale senza bebande</span>
+        /* Non è possibile avere un’ordinazione con più di 30 elementi
+         * (se accade prevedere un messaggio
+         * d’errore)
+         */
+<span class="pc bpc" id="L21" title="1 of 2 branches missed.">        if (itemsOrdered.size() &gt; 30) {</span>
+<span class="nc" id="L22">            throw new TakeAwayBillException(&quot;Non è possibile avere un’ordinazione con più di 30 elementi&quot;);</span>
+        }
+
+//Inizializzazione tot e totNoDrink
+<span class="fc" id="L26">        tot = itemsOrdered.stream().mapToDouble(MenuItem::getPrice).sum();</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        totNoDrink = itemsOrdered.stream().filter(item -&gt; item.getType() != MenuItem.ItemType.Bevande)</span>
+<span class="fc" id="L28">                .mapToDouble(MenuItem::getPrice).sum();</span>
+
+
+        /* Se l’importo totale è inferiore a 10 € viene aggiunta una commissione di 0,50 €
+         *
+         */
+<span class="pc bpc" id="L34" title="1 of 4 branches missed.">        if (tot &gt; 0 &amp;&amp; tot &lt; 10) {</span>
+<span class="fc" id="L35">            tot += 0.5;</span>
+        }
+
+        /* Se vengono ordinati più di 5 Panini viene fatto uno sconto
+         * del 50% sul prezzo del panino meno caro
+         */
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        long nPanini = itemsOrdered.stream().filter(m -&gt; m.getType() == MenuItem.ItemType.Panino).count();</span>
+<span class="fc" id="L42">        OptionalDouble paninoMenoCostoso = itemsOrdered.stream()</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">                .filter(m -&gt; m.getType() == MenuItem.ItemType.Panino)</span>
+<span class="fc" id="L44">                .mapToDouble(MenuItem::getPrice).min();</span>
+
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (nPanini &gt; 5) {</span>
+<span class="fc" id="L47">            tot -= paninoMenoCostoso.getAsDouble() / 2;</span>
+        }
+
+        /* Se l’importo totale delle ordinazioni (Panini e Fritti)
+         *  supera i 50 euro viene fatto il 10% di sconto
+         */
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (totNoDrink &gt; 50) {</span>
+<span class="fc" id="L54">            tot *= 0.9;</span>
+        }
+
+<span class="fc" id="L57">        return tot;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
