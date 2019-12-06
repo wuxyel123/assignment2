@@ -25,7 +25,7 @@ public class AppTest {
     }
 
     @Test
-    public void ordineConPiuDi30ElementiGestitoCheckMessaggioErrore() {
+    public void ordineConPiuDi30ElementiGestito() {
         itemsOrdered = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             itemsOrdered.add(panino1);
