@@ -5,7 +5,5 @@ jdk: openjdk8
 os: linux
 script: 
   - "mvn clean install"
-  - "sbt clean coverage test"
 after_success:
-  - mvn clean test jacoco:report coveralls:report -DrepoToken=HB6pM4O9ma54YAUFKYD98yNGuwEVzLWAU
-  - "sbt coveralls"
+  - mvn clean test jacoco:report coveralls:report -DrepoToken=$COVERALLS_REPO_TOKEN
