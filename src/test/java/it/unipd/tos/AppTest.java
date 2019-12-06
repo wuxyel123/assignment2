@@ -25,7 +25,7 @@ public class AppTest {
     }
 
     @Test
-    public void ordineConPiuDi30Elementi() {
+    public void ordineConPiuDi30ElementiGestito() {
         itemsOrdered = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             itemsOrdered.add(panino1);
@@ -35,6 +35,15 @@ public class AppTest {
         } catch (TakeAwayBillException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void ordineConPiuDi30ElementiThrowato() throws TakeAwayBillException{
+        itemsOrdered = new ArrayList<>();
+        for (int i = 0; i < 30; i++) {
+            itemsOrdered.add(panino1);
+        }
+            app.getOrderPrice(itemsOrdered);
     }
 
     @Test

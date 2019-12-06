@@ -16,9 +16,6 @@ public class MenuItem {
         this.setPrice(price);
     }
 
-    public MenuItem() {
-    }
-
     public void setType(ItemType type) {
         this.type = type;
     }
@@ -33,10 +30,6 @@ public class MenuItem {
 
     public ItemType getType() {
         return type;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public double getPrice() {
