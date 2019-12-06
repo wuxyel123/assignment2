@@ -25,7 +25,7 @@ public class AppTest {
     }
 
     @Test
-    public void ordineConPiuDi30ElementiGestito() {
+    public void ordineConPiuDi30ElementiGestitoCheckMessaggioErrore() {
         itemsOrdered = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             itemsOrdered.add(panino1);
@@ -34,6 +34,7 @@ public class AppTest {
             app.getOrderPrice(itemsOrdered);
         } catch (TakeAwayBillException e) {
             e.printStackTrace();
+            assertEquals("Non è possibile avere un’ordinazione con più di 30 elementi",e.getMessage());
         }
     }
 
