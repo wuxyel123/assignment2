@@ -34,20 +34,19 @@ public class AppTest {
             app.getOrderPrice(itemsOrdered);
         } catch (TakeAwayBillException e) {
             e.printStackTrace();
-            assertEquals("Non è possibile avere un’ordinazione con più di 30 elementi",e.getMessage());
         }
     }
 
-    @Test
+    @Test(expected = TakeAwayBillException.class)
     public void ordineConPiuDi30ElementiThrowato() throws TakeAwayBillException{
         itemsOrdered = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 31; i++) {
             itemsOrdered.add(panino1);
         }
             app.getOrderPrice(itemsOrdered);
     }
 
-    @Test
+    @Test()
     public void ordineVuoto() throws TakeAwayBillException{
         itemsOrdered = new ArrayList<>();
         assertEquals(0D, app.getOrderPrice(itemsOrdered), 0);
