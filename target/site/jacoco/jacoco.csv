@@ -1,0 +1,5 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+sandwich-shop-manager,it.unipd.tos.business.exception,TakeAwayBillException,4,0,0,0,2,0,1,0,1,0
+sandwich-shop-manager,it.unipd.tos.model,MenuItem.ItemType,0,34,0,0,0,1,0,1,0,1
+sandwich-shop-manager,it.unipd.tos.model,MenuItem,6,30,0,0,3,13,2,6,2,6
+sandwich-shop-manager,it.unipd.tos,App,5,96,2,14,1,18,2,11,0,5
